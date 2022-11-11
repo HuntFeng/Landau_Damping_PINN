@@ -1,0 +1,9 @@
+__pycache__
+model
+report/*
+
+# except
+!report/*.pdf
+!report/*.tex
+!report/*.bib
+!report/img
