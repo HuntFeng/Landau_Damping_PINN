@@ -186,7 +186,7 @@ class F(nn.Module):
     def test(self):
         self.eval()
         # mesh
-        T, X = self.T, self.X 
+        T, X = self.T, self.X/(self.X.max()/2) 
         x, t = X[0,:].detach().numpy(), T[:,0].detach().numpy()
 
         # data
@@ -219,7 +219,7 @@ class F(nn.Module):
         plt.figure()
         plt.semilogy(t, energy_test, label="Simulation")
         plt.semilogy(t, energy_pred, '--', label="PINN prediction")
-        plt.xlabel("$t$")
+        plt.xlabel("$t (\omega_{pe}^{-1})$")
         plt.ylabel("$\int |E|^2 dx$")
         plt.legend()
 
