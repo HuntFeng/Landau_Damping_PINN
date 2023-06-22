@@ -225,13 +225,18 @@ class F(nn.Module):
 
 
 if __name__ == '__main__':
-    from utils import clear_datadir
+    import os
+    import shutil
 
-    clear_datadir("model")
+    datadir = "model"
+    if os.path.exists(datadir):
+        shutil.rmtree(datadir)
+    os.mkdir(datadir)
+    
     model = F()
     print(model)
 
-    model.load_data("simulation/data.npz")
+    model.load_data("vlasov-simulation/data/data.npz")
     model.to_device("cuda:0")
     model.fit(epochs=10000, auto_save=True)
     model.to_device("cpu")
